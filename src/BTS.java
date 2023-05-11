@@ -1,8 +1,12 @@
-public class BTS <K extends Comparable<K>, V> implements Iterable<Entry<K, V>>{
+import java.util.Iterator;
+import java.util.Stack;
+
+public class BTS<K extends Comparable<K>, V> implements Iterable<K> {
     //root of BST
     private Node root;
+
     private class Node {
-        private K key;
+        private final K key;
         private V val;
         private Node left, right;
         private int size;
@@ -13,6 +17,7 @@ public class BTS <K extends Comparable<K>, V> implements Iterable<Entry<K, V>>{
             this.size = 1;
         }
     }
+
     public BTS() {
         root = null;
     }
@@ -44,6 +49,7 @@ public class BTS <K extends Comparable<K>, V> implements Iterable<Entry<K, V>>{
         Node node = get(root, key);
         return node == null ? null : node.val;
     }
+
     private Node get(Node node, K key) {
         if (node == null) {
             return null;
@@ -57,6 +63,7 @@ public class BTS <K extends Comparable<K>, V> implements Iterable<Entry<K, V>>{
             return node;
         }
     }
+
     public void delete(K key) {
         root = delete(root, key);
     }
@@ -86,6 +93,7 @@ public class BTS <K extends Comparable<K>, V> implements Iterable<Entry<K, V>>{
         return node;
     }
 
+
     public void deleteMin() {
         root = deleteMin(root);
     }
@@ -108,20 +116,37 @@ public class BTS <K extends Comparable<K>, V> implements Iterable<Entry<K, V>>{
         }
         return min(node.left);
     }
+
     public int size() {
         return size(root);
     }
+
     private int size(Node node) {
         return node == null ? 0 : node.size;
     }
 
+    public Iterator<K> iterator() {
+        return new Iterator<>() {
+            private Node current = root;
+            private final Stack<Node> stack = new Stack<>();
 
-    public Iterable<K> iterator() {
+            @Override
+            public boolean hasNext() {
+                return current != null || !stack.isEmpty();
+            }
 
+            @Override
+            public K next() {
+                while (current != null) {
+                    stack.push(current);
+                    current = current.left;
+                }
+                current = stack.pop();
+                K key = current.key;
+                current = current.right;
+                return key;
+            }
+        };
     }
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
 
 }
