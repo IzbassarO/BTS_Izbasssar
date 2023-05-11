@@ -13,6 +13,7 @@ public class Main {
         bst.put(6, "six");
         bst.put(9, "nine");
         bst.put(10, "ten");
+        bst.put(10, "shantaram");
 
         // Testing size method
         System.out.println("Size of BST: " + bst.size()); // Output: Size of BST: 10
