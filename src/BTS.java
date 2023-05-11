@@ -1,6 +1,5 @@
-public class BTS <K extends Comparable<K>, V> implements Iterable<BTS.Entry<K, V>>{
+public class BTS <K extends Comparable<K>, V> implements Iterable<Entry<K, V>>{
     //root of BST
-    // implements Iterable<BTS.Entry<K, V>>
     private Node root;
     private class Node {
         private K key;
@@ -117,28 +116,12 @@ public class BTS <K extends Comparable<K>, V> implements Iterable<BTS.Entry<K, V
     }
 
 
-//    public Iterable<K> iterator() {
-//
-//    }
+    public Iterable<K> iterator() {
+
+    }
     public boolean isEmpty() {
         return size() == 0;
     }
 
-    public static class Entry<K, V> {
-        private K key;
-        private V value;
 
-        public Entry(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public K getKey() {
-            return key;
-        }
-
-        public V getValue() {
-            return value;
-        }
-    }
 }
