@@ -40,5 +40,9 @@ public class Main {
         for (Integer key : bst) {
             System.out.println(key); // Output: 2, 3, 5, 6, 7, 8, 9, 10
         }
+
+        // Testing inorder method
+        System.out.println("Keys in BST using inorder traversal:");
+        bst.inorder(); // Output: 2, 3, 5, 6, 7, 8, 9, 10
     }
 }

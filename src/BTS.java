@@ -125,6 +125,19 @@ public class BTS<K extends Comparable<K>, V> implements Iterable<K> {
         return node == null ? 0 : node.size;
     }
 
+    public void inorder() {
+        inorder(root);
+    }
+
+    private void inorder(Node node) {
+        if (node == null) {
+            return;
+        }
+        inorder(node.left);
+        System.out.println("key is " + node.key + " and value is " + node);
+        inorder(node.right);
+    }
+
     public Iterator<K> iterator() {
         return new Iterator<>() {
             private Node current = root;
